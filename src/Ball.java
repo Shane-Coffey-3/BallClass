@@ -40,9 +40,11 @@ public class Ball {
     public void randomBounce(int width, int height) {
         double speed = Math.sqrt(Math.pow(xSpeed, 2) + Math.pow(ySpeed, 2));
         if(this.getX() + this.getSize() > width) {
-
+            this.setXSpeed(-1 * Math.random() * speed);
+            this.setYSpeed(speed - this.xSpeed);
         } else if(this.getX() < 0) {
-
+            this.setXSpeed(-1 * Math.random() * speed);
+            this.setYSpeed(speed - this.xSpeed);
         }
 
         if(this.getY() + this.getSize() > height) {
