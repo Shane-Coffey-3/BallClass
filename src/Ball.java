@@ -43,7 +43,7 @@ public class Ball {
             this.setXSpeed(-1 * Math.random() * speed);
             this.setYSpeed(speed - this.xSpeed);
         } else if(this.getX() < 0) {
-            this.setXSpeed(-1 * Math.random() * speed);
+            this.setXSpeed(Math.random() * speed);
             this.setYSpeed(speed - this.xSpeed);
         }
 

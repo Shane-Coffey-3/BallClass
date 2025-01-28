@@ -26,7 +26,11 @@ public class Arena extends JPanel {
         for (Ball ball : balls) {
             ball.draw(g);
             ball.move();
-            ball.bounce(this.getWidth(), this.getHeight());
+            if(RANDOM_ANGLE) {
+                ball.randomBounce(this.getWidth(), this.getHeight());
+            } else {
+                ball.bounce(this.getWidth(), this.getHeight());
+            }
         }
 
         try {
