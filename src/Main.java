@@ -7,7 +7,7 @@ public class Main {
         JFrame frame = new JFrame();
         frame.setSize(400,400);
 
-        Arena panel = new Arena(20);
+        Arena panel = new Arena(5, false, true);
 
         frame.add(panel);
 

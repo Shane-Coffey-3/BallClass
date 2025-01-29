@@ -39,18 +39,26 @@ public class Ball {
 
     public void randomBounce(int width, int height) {
         double speed = Math.sqrt(Math.pow(xSpeed, 2) + Math.pow(ySpeed, 2));
-        if(this.getX() + this.getSize() > width) {
-            this.setXSpeed(-1 * Math.random() * speed);
-            this.setYSpeed(speed - this.xSpeed);
-        } else if(this.getX() < 0) {
-            this.setXSpeed(Math.random() * speed);
-            this.setYSpeed(speed - this.xSpeed);
+
+        boolean makeNumNegative = Math.random() > 0.5;
+        int multiplyNum = 0;
+        if(makeNumNegative) multiplyNum = 1;
+        else multiplyNum = -1;
+
+        if(x + size > width) {
+            xSpeed = -1 * Math.random() * speed;
+            ySpeed = multiplyNum * Math.sqrt(Math.pow(speed, 2) - Math.pow(xSpeed, 2));
+        } else if(x < 0) {
+            xSpeed = Math.random() * speed;
+            ySpeed = multiplyNum * Math.sqrt(Math.pow(speed, 2) - Math.pow(xSpeed, 2));
         }
 
-        if(this.getY() + this.getSize() > height) {
-            this.setYSpeed(-this.getYSpeed());
-        } else if(this.getY() < 0) {
-            this.setYSpeed(-this.getYSpeed());
+        if(y + size > height) {
+            ySpeed = -1 * Math.random() * speed;
+            xSpeed = multiplyNum * Math.sqrt(Math.pow(speed, 2) - Math.pow(ySpeed, 2));
+        } else if(y < 0) {
+            ySpeed = Math.random() * speed;
+            xSpeed = multiplyNum * Math.sqrt(Math.pow(speed, 2) - Math.pow(ySpeed, 2));
         }
     }
 
