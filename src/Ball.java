@@ -18,21 +18,21 @@ public class Ball {
         g.setColor(color);
     }
 
-    public void move() {
-        x += xSpeed;
-        y += ySpeed;
+    public void move(int width, int height) {
+        x = Math.max(Math.min(x + xSpeed, width - size), 0);
+        y = Math.max(Math.min(y + ySpeed, height - size), 0);
     }
 
     public void bounce(int width, int height) {
-        if(this.getX() + this.getSize() > width) {
+        if(this.getX() + this.getSize() >= width) {
             this.setXSpeed(-this.getXSpeed());
-        } else if(this.getX() < 0) {
+        } else if(this.getX() <= 0) {
             this.setXSpeed(-this.getXSpeed());
         }
 
-        if(this.getY() + this.getSize() > height) {
+        if(this.getY() + this.getSize() >= height) {
             this.setYSpeed(-this.getYSpeed());
-        } else if(this.getY() < 0) {
+        } else if(this.getY() <= 0) {
             this.setYSpeed(-this.getYSpeed());
         }
     }
@@ -41,22 +41,22 @@ public class Ball {
         double speed = Math.sqrt(Math.pow(xSpeed, 2) + Math.pow(ySpeed, 2));
 
         boolean makeNumNegative = Math.random() > 0.5;
-        int multiplyNum = 0;
+        int multiplyNum;
         if(makeNumNegative) multiplyNum = 1;
         else multiplyNum = -1;
 
-        if(x + size > width) {
+        if(x + size >= width) {
             xSpeed = -1 * Math.random() * speed;
             ySpeed = multiplyNum * Math.sqrt(Math.pow(speed, 2) - Math.pow(xSpeed, 2));
-        } else if(x < 0) {
+        } else if(x <= 0) {
             xSpeed = Math.random() * speed;
             ySpeed = multiplyNum * Math.sqrt(Math.pow(speed, 2) - Math.pow(xSpeed, 2));
         }
 
-        if(y + size > height) {
+        if(y + size >= height) {
             ySpeed = -1 * Math.random() * speed;
             xSpeed = multiplyNum * Math.sqrt(Math.pow(speed, 2) - Math.pow(ySpeed, 2));
-        } else if(y < 0) {
+        } else if(y <= 0) {
             ySpeed = Math.random() * speed;
             xSpeed = multiplyNum * Math.sqrt(Math.pow(speed, 2) - Math.pow(ySpeed, 2));
         }
