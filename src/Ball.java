@@ -62,6 +62,22 @@ public class Ball {
         }
     }
 
+    public void bounceBall(Ball other) {
+        double thisCenterX = this.x + this.size / 2.0;
+        double thisCenterY = this.y + this.size / 2.0;
+        double otherCenterX = other.x + other.getSize() / 2.0;
+        double otherCenterY = other.y + other.getSize() / 2.0;
+        double distanceBetweenBalls = Math.sqrt(Math.pow(otherCenterX - thisCenterX, 2) + Math.pow(otherCenterY - thisCenterY, 2));
+        if(this.getSize() / 2.0 + other.getSize() / 2.0 > distanceBetweenBalls) {
+            double ball1XSpeed = this.xSpeed;
+            double ball1YSpeed = this.ySpeed;
+            this.setXSpeed(other.getXSpeed());
+            this.setYSpeed(other.getYSpeed());
+            other.setXSpeed(ball1XSpeed);
+            other.setYSpeed(ball1YSpeed);
+        }
+    }
+
 
     public Color getColor(){
         return color;
