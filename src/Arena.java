@@ -11,7 +11,7 @@ public class Arena extends JPanel {
     
     public Arena(int numBalls, boolean randomAngle, boolean bounceOffBalls){
         setBackground(Color.blue);
-        for(int i = 0; i < numBalls; i++) {
+        /*for(int i = 0; i < numBalls; i++) {
             double randomXSpeed = Math.random() * 4 - 2.9;
             double randomYSpeed = Math.random() * 4 - 2.9;
             int randomSize = (int) (Math.random() * 40) + 10;
@@ -20,7 +20,9 @@ public class Arena extends JPanel {
             Color randomColor = new Color((int) (Math.random() * 256), (int) (Math.random() * 256), (int) (Math.random() * 256));
             
             balls.add(new Ball(randomX, randomY, randomXSpeed, randomYSpeed, randomSize, randomColor));
-        }
+        }*/
+        balls.add(new Ball(200, 200, -1, -1, 50, Color.RED));
+        balls.add(new Ball(50, 50, 1, 1, 10, Color.BLUE));
         RANDOM_ANGLE = randomAngle;
         BOUNCE_OFF_BALLS = bounceOffBalls;
     }
