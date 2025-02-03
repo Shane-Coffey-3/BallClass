@@ -69,12 +69,17 @@ public class Ball {
         double otherCenterY = other.y + other.getSize() / 2.0;
         double distanceBetweenBalls = Math.sqrt(Math.pow(otherCenterX - thisCenterX, 2) + Math.pow(otherCenterY - thisCenterY, 2));
         if(this.getSize() / 2.0 + other.getSize() / 2.0 > distanceBetweenBalls) {
-            double ball1XSpeed = this.xSpeed;
-            double ball1YSpeed = this.ySpeed;
-            this.setXSpeed(other.getXSpeed());
-            this.setYSpeed(other.getYSpeed());
-            other.setXSpeed(ball1XSpeed);
-            other.setYSpeed(ball1YSpeed);
+            // magical formula to get the proper speed from Wikipedia
+            // this is all abstraction I just translated it into code
+            double v1 = Math.sqrt(Math.pow(this.xSpeed, 2) + Math.pow(this.ySpeed, 2));
+            double v2 = Math.sqrt(Math.pow(other.getXSpeed(), 2) + Math.pow(other.getYSpeed(), 2));
+
+            double theta1 = Math.atan2(this.ySpeed, this.xSpeed);
+            double theta2 = Math.atan2(other.ySpeed, other.xSpeed);
+
+            double phi = Math.atan2(otherCenterY - thisCenterY, otherCenterX - thisCenterX);
+
+            double newv1X =
         }
     }
 
