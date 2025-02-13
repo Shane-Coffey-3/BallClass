@@ -1,5 +1,10 @@
+import org.w3c.dom.ls.LSOutput;
+
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.ArrayList;
 
 
@@ -8,9 +13,13 @@ public class Arena extends JPanel {
     private final boolean BOUNCE_OFF_BALLS;
 
     private ArrayList<Ball> balls = new ArrayList<>();
-    
+    private Ball me = new Ball(200, 200, 0, 0, 50, new Color(255, 255, 0));
+
     public Arena(int numBalls, boolean randomAngle, boolean bounceOffBalls){
+        setFocusable(true);
+        requestFocus();
         setBackground(Color.blue);
+
         for(int i = 0; i < numBalls; i++) {
             double randomXSpeed = Math.random() * 4 - 2.9;
             double randomYSpeed = Math.random() * 4 - 2.9;
@@ -23,11 +32,30 @@ public class Arena extends JPanel {
         }
         RANDOM_ANGLE = randomAngle;
         BOUNCE_OFF_BALLS = bounceOffBalls;
+
+        addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if(e.getKeyCode() == 68) {
+                    me.setX(me.getX() + 4);
+                } else if(e.getKeyCode() == 65) {
+                    me.setX(me.getX() - 4);
+                }
+
+                if(e.getKeyCode() == 83) {
+                    me.setY(me.getY() + 4);
+                } else if(e.getKeyCode() == 87) {
+                    me.setY(me.getY() - 4);
+                }
+            }
+        });
+
     }
     
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
+        me.draw(g);
         for (Ball ball : balls) {
             ball.draw(g);
             ball.move(this.getWidth(), this.getHeight());
